@@ -6,7 +6,7 @@ const app = express();
 //Middlewar (deixa o json disponível no req)
 app.use(express.json());
 
-app.use('/checklists',checklistRouter)
+app.use(checklistRouter)
 
 
 app.listen(3000, () => {
