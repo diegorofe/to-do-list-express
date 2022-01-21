@@ -1,6 +1,10 @@
 //root do projeto
 const express = require('express');
 const checklistRouter = require('./src/routes/checklist')
+
+require('./config/database')
+
+
 const app = express();
 
 //Middlewar (deixa o json disponível no req)
