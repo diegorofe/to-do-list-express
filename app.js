@@ -12,6 +12,9 @@ const app = express();
 //Middlewar (deixa o json disponível no req)
 app.use(express.json());
 
+//arquivos estaticos ficam neste pasta
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
 
