@@ -18,8 +18,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
 
-app.use('/checklists', checklistRouter)
 app.use('/', rootRouter)
+app.use('/checklists', checklistRouter)
+
 
 
 app.listen(3000, () => {
