@@ -17,7 +17,7 @@ app.use(express.json());
 //Middleawr para requisições via formulário
 app.use(express.urlencoded({extended: true}))
 
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method', {methods: ['POST', 'GET']}))
 
 //arquivos estaticos ficam neste pasta
 app.use(express.static(path.join(__dirname, 'public')));
