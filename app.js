@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path')
 const checklistRouter = require('./src/routes/checklist')
 const rootRouter = require('./src/routes/index')
+const method = require('method-override');
+const methodOverride = require('method-override');
 
 require('./config/database')
 
@@ -14,6 +16,8 @@ app.use(express.json());
 
 //Middleawr para requisições via formulário
 app.use(express.urlencoded({extended: true}))
+
+app.use(methodOverride('_method'))
 
 //arquivos estaticos ficam neste pasta
 app.use(express.static(path.join(__dirname, 'public')));
