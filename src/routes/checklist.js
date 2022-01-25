@@ -1,6 +1,7 @@
 
 
 const express = require('express');
+const { render } = require('express/lib/response');
 const res = require('express/lib/response');
 
 const router = express.Router();
@@ -21,17 +22,29 @@ router.get('/', async (req, res) => {
 
 })
 
+router.get('/new', async(req, res) => {
+    try {
+        //criando objeto vazio
+        let checklist = new Checklist();
+        res.status(200).render('checklists/new', {checklist: checklist})
+    } catch (error) {
+        res.status(500).render('pages/error', {errors: 'Erro ao carregar o formulário'})
+    }
+})
+
 router.post('/', async (req, res) => {
    
-   let { name } = req.body;
+   let { name } = req.body.checklist;
+   let checklist = new Checklist({name});
 
    try{
-   let checklist2 = await Checklist.create( { name } )
+   await checklist.save();
+   res.redirect('/checklists')
    
 
    }catch (error){
-       res.status(422).json(error);
-
+       
+    res.status(422).render('checklist/new', {checklist: {...checklist, error}})
    }
   
 })

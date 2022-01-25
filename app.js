@@ -12,6 +12,9 @@ const app = express();
 //Middlewar (deixa o json disponível no req)
 app.use(express.json());
 
+//Middleawr para requisições via formulário
+app.use(express.urlencoded({extended: true}))
+
 //arquivos estaticos ficam neste pasta
 app.use(express.static(path.join(__dirname, 'public')));
 
